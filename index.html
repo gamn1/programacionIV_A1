@@ -1,50 +1,73 @@
 <!DOCTYPE html>
-<html  lang = " en " >
-<head>
-    <meta  charset = "UTF-8" >
-    <meta  name = "viewport" content="width=device-width" , initial-scala = 1.0 " >
-    <meta  http-equiv = " X-UA-Compatible " content = " ie = edge " >
-    <title> Bienvenido a Programacion IV </title>
-    <link rel="stylesheet" href="style.css">
-</head> 
-<body>
+
+<html lang="en">
+
+  <head>
+
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <title>Bienvenido a Programacion IV</title>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  </head> 
+
+  <body class="bg-secondary">
+
     
-    <h1>Bienvenidos a Programacion IV</h1>
-    <form action="post" id="ESTUDIANTE">
-        <h2>ESTUDIANTE</h2>
-        <label for="nombre"><h4>Nombre Completo</h4></label><input type="text" name="nombre" placeholder="nombre...">
-        <br><br>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
-        <label for="nombre"><h4>Edad</h4></label><input type="number" name="Edad" placeholder="Edad.....">
-        <br><br>
-        <label><h4>Sexo</h4></label>
-        <input type="radio" name="genero" id="masculino"><label for="genero">masculino </label>
-         <input type="radio" name="genero" id="femenino"><label for="genero">femenino</label>
-            <br><br>
-            <label for="curso>"><h4>curso</h4></label>
-            <input type="text" name="Curso" placeholder="Curso....">
-           
+      <a class="navbar-brand" href="#">::.. APP ..::</a>
 
-    </form>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
+          <ul class="navbar-nav mr-auto">
 
-    <form action="post" id="DOCENTE">
-        <h2>DOCENTE</h2>
-        <label for="nombre"><h4>Nombre Completo</h4></label><input type="text" name="nombre" placeholder="nombre...">
-        <br><br>
+              <li class="nav-item active">
+                  <a class="nav-link" href="#">INICIO <span class="sr-only">(current)</span></a>
+              </li>
 
-        <label for="nombre"><h4>Edad</h4></label><input type="number" name="Edad" placeholder="Edad.....">
-        <br><br>
-        <label><h4>Sexo</h4></label>
-    <input type="radio" name="genero" id="masculino"><label for="genero">masculino </label>
-            <input type="radio" name="genero" id="femenino"><label for="genero">femenino</label>
-            <br><br>
-            <label for="Cedula>"><h4>Cedula</h4></label>
-            <input type="text" name="Cedula" placeholder="Cedula........">
+              <li class="nav-item">
+                  <a id="Alumno" class="nav-link mostrar-alumnos" data-modulo="alumnos" href="#">Alumnos</a>
+              </li> 
 
-          
-    </form>
-    
+              <li class="nav-item">
+                  <a id="Docente" class="nav-link mostrar-docentes" data-modulo="docentes" href="#">Docentes</a>
+              </li>
 
-</body>
+              <li class="nav-item">
+                  <a class="nav-link mostrar-materias" data-modulo="materias" href="#">Materias</a>
+              </li>
+
+              <li class="nav-item">
+                  <a class="nav-link mostrar-matricula" data-modulo="matricula" href="#">Matricula</a>
+              </li>
+
+              <li class="nav-item">
+                  <a class="nav-link mostrar-inscripcion" data-modulo="inscripcion" href="#">Inscripcion</a>
+              </li>
+
+              <li class="nav-item">
+                  <a class="nav-link mostrar-notas" data-modulo="notas" href="#">Notas</a>
+              </li>
+
+          </ul>
+
+      </div>
+      
+    </nav>
+
+    <div class="container">
+
+      <div id="vista-alumnos"></div>
+      <div id="vista-docentes"></div>
+      <div id="vista-materia"></div>
+      <div id="vista-matricula"></div>
+      <div id="vista-inscripcion"></div>
+      <div id="vista-notas"></div>
+
+    </div>
+
+    <script src="public/js/app.js"></script>
+      
+  </body>
 </html>
