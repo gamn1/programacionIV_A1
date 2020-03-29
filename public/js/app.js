@@ -1,65 +1,44 @@
-var $ = el => document.querySelector(el);
+var $ = el => document.querySelectorAll(el), 
+    id = el => document.getElementById(el), 
+    clase = el => document.querySelector(el), 
+    script = el => document.createElement(el);
 
 document.addEventListener("DOMContentLoaded", event => {
     
     event.preventDefault();
 
-    let mostrarVista = document.getElementById('Alumno');
+    var Modulos = $(".mostrar");
 
-    let mostrarVistaDocente = document.getElementById('Docente');
-
-    mostrarVista.addEventListener("click", e=>{
+    for (let i = 0; i < Modulos.length; i++) {
+        Modulos[i].addEventListener("click",mostrarInformacion);
         
-        e.stopPropagation();
+    }
+
+    function mostrarInformacion(){
         
-        let modulo = "alumnos";
+        let dataset = this.dataset.modulo;
 
-        fetch('public/vistas/alumno/alumnos.html').then( resp => resp.text()).then( resp => {
-
-            document.getElementById('vista-alumnos').innerHTML = resp;
-            let btnCerrar = $(".close");
+        fetch(`public/vistas/${dataset}/${dataset}.html`).then( resp => resp.text() ).then( resp => {
+            
+            id(`vista-${dataset}`).innerHTML = resp;
+            console.log(dataset);
+            
+            let btnCerrar = clase(`.close-${dataset}`);
 
             btnCerrar.addEventListener("click", event => {
 
-                $(`#vista-${modulo}`).innerHTML = "";
-
+                id(`vista-${dataset}`).innerHTML = "";
             });
+            
+            let js = script("script");
+            
+            js.src = `public/vistas/${dataset}/${dataset}.js`;
 
-            let cuerpo = $("body"), script = document.createElement("script");
+            clase("body").appendChild(js);
 
-            script.src = `public/vistas/Alumno/${modulo}.js`;
-
-            cuerpo.appendChild(script);
-                
         });
-
-    });
-
-    mostrarVistaDocente.addEventListener("click", e=>{
         
-        e.stopPropagation();
-        
-        let modulo = "docentes";
+    }
 
-        fetch('public/vistas/alumno/docentes.html').then( resp => resp.text()).then( resp => {
-
-            document.getElementById('vista-docentes').innerHTML = resp;
-            let btnCerrar = $(".close");
-
-            btnCerrar.addEventListener("click", event => {
-
-                $(`#vista-${modulo}`).innerHTML = "";
-
-            });
-
-            let cuerpo = $("body"), script = document.createElement("script");
-
-            script.src = `public/vistas/Alumno/${modulo}.js`;
-
-            cuerpo.appendChild(script);
-                
-        });
-
-    });
 
 });

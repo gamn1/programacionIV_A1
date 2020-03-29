@@ -53,7 +53,13 @@
 
             }
 
-            $this->almacenar_alumno();
+            if( $this->datos['accion'] == 'nuevo'){
+                $this->almacenar_alumno();
+            }
+            else{
+                $this->modificarAlumno();
+            }
+
 
         }
 
@@ -76,6 +82,43 @@
 
             }
 
+        }
+        
+        public function buscarAlumno($valor=''){
+            $this->db->consultas('SELECT alumnos.id_Alumno, alumnos.codigo, alumnos.nombre, 
+                alumnos.direccion, alumnos.telefono from alumnos
+                where alumnos.codigo like "%'.$valor.'%" or alumnos.nombre like "%'.$valor.'%"
+            ');
+            return $this->respuesta = $this->db->obtener_data();
+        }
+
+        public function eliminarAlumno($idAlumno=''){
+            $this->db->consultas('
+                delete alumnos
+                from alumnos
+                where alumnos.id_Alumno = "'.$idAlumno.'"
+            ');
+            $this->respuesta['msg'] = 'Registro eliminado correctamente';
+        }
+
+        public function modificarAlumno(){
+
+            if ( $this->respuesta['msg'] == 'correcto') {
+                
+                if ( $this->datos['accion'] === 'modificar') {
+
+                    $this->db->consultas("UPDATE alumnos SET ".
+                        "codigo = '". $this->datos['codigo'] ."',".
+                        "direccion = '". $this->datos['direccion'] ."',".
+                        "nombre = '". $this->datos['nombre'] ."',".
+                        "telefono = '". $this->datos['telefono'] ."' ".
+                        "WHERE id_Alumno = ". $this->datos['id']
+                    );
+
+                    $this->respuesta['msg'] = 'Registro modificado correctamente';
+                }
+                
+            }
         }
 
     }
